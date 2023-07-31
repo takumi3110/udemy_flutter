@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:udemy/view/start_up/create_account_page.dart';
 
 import '../screen.dart';
 
@@ -45,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               RichText(
                   text: TextSpan(
                     style: const TextStyle(color: Colors.black),
@@ -55,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                         text: 'こちら',
                         style: const TextStyle(color: Colors.blue),
                         recognizer: TapGestureRecognizer()..onTap = () {
-                          print('アカウント作成');
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => CreateAccountPage()));
                         }
                       )
                     ]
