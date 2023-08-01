@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:udemy/utils/authentication.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
@@ -107,7 +108,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               ),
               const SizedBox(height: 50,),
               ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                 if (nameController.text.isNotEmpty
                     && userIdController.text.isNotEmpty
                 && selfIntroductionController.text.isNotEmpty
@@ -115,7 +116,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 && passController.text.isNotEmpty
                 && image != null
                 ) {
-                  Navigator.pop(context);
+                  var result = await Authentication.signUp(email: emailController.text, pass: passController.text);
+                  print(result);
+                  if (result == true) {
+                    Navigator.pop(context);
+                  }
                 }
               },
                   child: Text('アカウント作成')
