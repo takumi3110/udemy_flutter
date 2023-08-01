@@ -2,8 +2,10 @@ import 'dart:io';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:udemy/utils/authentication.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
@@ -28,6 +30,15 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         image = File(pickedFile.path);
       });
     }
+  }
+
+  Future<void> uploadImage(String uid) async {
+    final FirebaseStorage storageInstance = FirebaseStorage.instance;
+    final Reference ref = storageInstance.ref();
+    await ref.child(uid).putFile(image!);
+    String downloadUrl = await storageInstance.ref(uid).getDownloadURL();
+    print('image_path $downloadUrl');
+
   }
 
   @override
@@ -118,7 +129,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 ) {
                   var result = await Authentication.signUp(email: emailController.text, pass: passController.text);
                   print(result);
-                  if (result == true) {
+                  if (result is UserCredential) {
+                    await uploadImage(result.user!.uid);
                     Navigator.pop(context);
                   }
                 }

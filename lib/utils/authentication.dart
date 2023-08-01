@@ -6,11 +6,11 @@ class Authentication {
 
   static Future<dynamic> signUp({required String email, required String pass}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential newAccount = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: pass
       );
       print('auth complete');
-      return true;
+      return newAccount;
     } on FirebaseAuthException catch (e) {
       print('auth error \n $e');
       return false;
