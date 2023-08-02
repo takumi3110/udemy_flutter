@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../model/account.dart';
 import '../../model/post.dart';
@@ -19,8 +20,8 @@ class _AccountPageState extends State<AccountPage> {
     selfIntroduction: 'ヤーッ！！',
     userId: 'chiikawa',
     imagePath: 'https://www.lettuceclub.net/i/N1/1105949/11163558.jpg',
-    createdTime: DateTime.now(),
-    updatedTime: DateTime.now(),
+    createdTime: Timestamp.now(),
+    updatedTime: Timestamp.now(),
   );
 
   List<Post> postList = [
