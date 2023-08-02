@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:udemy/utils/authentication.dart';
+import 'package:udemy/view/account_page/edit_account_page.dart';
 
 import '../../model/account.dart';
 import '../../model/post.dart';
@@ -63,7 +63,9 @@ class _AccountPageState extends State<AccountPage> {
                            )
                          ],
                        ),
-                         OutlinedButton(onPressed: () {}, child: const Text('change'))
+                         OutlinedButton(onPressed: () {
+                           Navigator.push(context, MaterialPageRoute(builder: (context) => EditAccountPage()));
+                         }, child: const Text('change'))
                      ]),
                      const SizedBox(height: 15,),
                      Text(myAccount.selfIntroduction)
