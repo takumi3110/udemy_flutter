@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:udemy/model/account.dart';
+import 'package:udemy/utils/authentication.dart';
 
 class UserFirestore {
   static final _firestoreInstance = FirebaseFirestore.instance;
@@ -19,6 +20,28 @@ class UserFirestore {
       return true;
     } on FirebaseException catch(e) {
       print('user create error $e');
+      return false;
+    }
+  }
+
+  static Future<dynamic> getUser(String uid) async {
+    try {
+      DocumentSnapshot documentSnapshot = await users.doc(uid).get();
+      Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+      Account myAccount = Account(
+        id: uid,
+        name: data['name'],
+        userId: data['user_id'],
+        selfIntroduction: data['self_introduction'],
+        imagePath: data['image_path'],
+        createdTime: data['created_time'],
+        updatedTime: data['updated_time']
+      );
+      Authentication.myAccount = myAccount;
+      print('user get complete');
+      return true;
+    } on FirebaseException catch (e) {
+      print ('get user error $e');
       return false;
     }
   }

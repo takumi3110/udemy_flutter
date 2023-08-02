@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:udemy/model/account.dart';
 
 class Authentication {
   static final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   static User? currentFirebaseUser;
+  static Account? myAccount;
 
   static Future<dynamic> signUp({required String email, required String pass}) async {
     try {
@@ -19,11 +21,11 @@ class Authentication {
 
   static Future<dynamic> emailSignIn({required String email, required String pass}) async {
     try {
-      final UserCredential _result = await _firebaseAuth
+      final UserCredential result = await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: pass);
-      currentFirebaseUser = _result.user;
-      print('login');
-      return true;
+      currentFirebaseUser = result.user;
+      print('login \n $result');
+      return result;
     } on FirebaseAuthException catch (e) {
       print('sign in error \n $e');
       return false;
