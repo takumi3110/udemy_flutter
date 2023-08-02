@@ -63,8 +63,13 @@ class _AccountPageState extends State<AccountPage> {
                            )
                          ],
                        ),
-                         OutlinedButton(onPressed: () {
-                           Navigator.push(context, MaterialPageRoute(builder: (context) => EditAccountPage()));
+                         OutlinedButton(onPressed: () async {
+                           var result = await Navigator.push(context, MaterialPageRoute(builder: (context) => EditAccountPage()));
+                           if (result == true) {
+                             setState(() {
+                               myAccount = Authentication.myAccount!;
+                             });
+                           }
                          }, child: const Text('change'))
                      ]),
                      const SizedBox(height: 15,),
