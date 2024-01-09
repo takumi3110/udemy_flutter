@@ -30,12 +30,12 @@ class _PostPageState extends State<PostPage> {
             TextField(
               controller: contentController,
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             ElevatedButton(
                 onPressed: () {
 
                 },
-                child: Text('POST')
+                child: const Text('POST')
             ),
           ],
         ),
