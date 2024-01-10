@@ -7,7 +7,6 @@ class FunctionUtils {
     ImagePicker  picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     return pickedFile;
-
   }
 
   static Future<dynamic> uploadImage(String uid, File image) async {

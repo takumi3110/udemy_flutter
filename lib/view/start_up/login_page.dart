@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: TextField(
                     controller: emailController,
                     decoration: const InputDecoration(
-                      hintText: 'mail adress'
+                      hintText: 'mail address'
                     ),
                   ),
                 ),

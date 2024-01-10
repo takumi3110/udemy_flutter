@@ -3,12 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:udemy/model/account.dart';
 import 'package:udemy/utils/authentication.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:udemy/utils/firestore/users.dart';
 import 'package:udemy/utils/functionUtils.dart';
 import 'package:udemy/utils/widget_utils.dart';
-import '';
 
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
