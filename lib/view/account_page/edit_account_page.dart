@@ -115,6 +115,7 @@ class _EditAccountPageState extends State<EditAccountPage> {
                       Authentication.myAccount = updateAccount;
                       var result = await UserFirestore.updateUser(updateAccount);
                       if (result == true) {
+                        // 第2引数にtrueを設定すると、popで遷移した元のページに第2引数をもっていける
                         Navigator.pop(context, true);
                       }
                     }

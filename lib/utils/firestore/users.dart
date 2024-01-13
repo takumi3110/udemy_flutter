@@ -49,7 +49,7 @@ class UserFirestore {
 
   static Future<dynamic> updateUser(Account updateAccount) async {
     try {
-      users.doc(updateAccount.id).update({
+      await users.doc(updateAccount.id).update({
         'name': updateAccount.name,
         'image_path': updateAccount.imagePath,
         'user_id': updateAccount.userId,

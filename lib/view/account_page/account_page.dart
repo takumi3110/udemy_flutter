@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:udemy/utils/authentication.dart';
 import 'package:udemy/view/account_page/edit_account_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../model/account.dart';
 import '../../model/post.dart';
@@ -21,12 +22,12 @@ class _AccountPageState extends State<AccountPage> {
         id: '1',
         content: 'わ…',
         postAccountId: '1',
-        createdTime: DateTime.now()),
+        createdTime: Timestamp.now()),
     Post(
         id: '2',
         content: 'わ…わ…',
         postAccountId: '1',
-        createdTime: DateTime.now()),
+        createdTime: Timestamp.now()),
   ];
 
   @override
@@ -64,7 +65,7 @@ class _AccountPageState extends State<AccountPage> {
                          ],
                        ),
                          OutlinedButton(onPressed: () async {
-                           var result = await Navigator.push(context, MaterialPageRoute(builder: (context) => EditAccountPage()));
+                           var result = await Navigator.push(context, MaterialPageRoute(builder: (context) => const EditAccountPage()));
                            if (result == true) {
                              setState(() {
                                myAccount = Authentication.myAccount!;
@@ -121,7 +122,7 @@ class _AccountPageState extends State<AccountPage> {
                                            Text('@${myAccount.userId}', style: const TextStyle(color: Colors.grey), ),
                                          ],
                                        ),
-                                       Text(DateFormat('M/d/yy').format(postList[index].createdTime!))
+                                       Text(DateFormat('M/d/yy').format(postList[index].createdTime!.toDate()))
                                      ],
                                    ),
                                    Text(postList[index].content)
