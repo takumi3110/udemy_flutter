@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:udemy/utils/firestore/posts.dart';
 import 'package:udemy/utils/firestore/users.dart';
-import 'package:udemy/view/time_line/post_page.dart';
 
 import '../../model/account.dart';
 import '../../model/post.dart';

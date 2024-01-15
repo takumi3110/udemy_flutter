@@ -7,6 +7,7 @@ import 'package:udemy/utils/authentication.dart';
 import 'package:udemy/utils/firestore/users.dart';
 import 'package:udemy/utils/functionUtils.dart';
 import 'package:udemy/utils/widget_utils.dart';
+import 'package:udemy/view/start_up/login_page.dart';
 
 class EditAccountPage extends StatefulWidget {
   const EditAccountPage({super.key});
@@ -120,7 +121,18 @@ class _EditAccountPageState extends State<EditAccountPage> {
                       }
                     }
                   },
-                  child: Text('更新')
+                  child: const Text('更新')
+              ),
+              const SizedBox(height: 50,),
+              ElevatedButton(
+                  onPressed: () {
+                    Authentication.signOut();
+                    while(Navigator.canPop(context)) {
+                      Navigator.pop(context);
+                    }
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                  },
+                  child: const Text('ログアウト')
               )
             ],
           ),
