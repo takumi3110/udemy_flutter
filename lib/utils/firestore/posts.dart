@@ -31,7 +31,7 @@ class PostFirestore {
     try{
       await Future.forEach(ids, (String id) async{
         var doc = await posts.doc(id).get();
-        Map<String, dynamic> data =doc.data() as Map<String, dynamic>;
+        Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
         Post post = Post(
           id: doc.id,
           content: data['content'],
