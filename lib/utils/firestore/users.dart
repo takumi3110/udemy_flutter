@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:udemy/model/account.dart';
 import 'package:udemy/utils/authentication.dart';
+import 'package:udemy/utils/firestore/posts.dart';
 
 class UserFirestore {
   static final _firestoreInstance = FirebaseFirestore.instance;
@@ -88,6 +89,10 @@ class UserFirestore {
       print('投稿ユーザーの取得エラー：$e');
       return null;
     }
+  }
 
+  static Future<dynamic> deleteUser(String accountId) async {
+    users.doc(accountId).delete();
+    PostFirestore.deletePosts(accountId);
   }
 }
