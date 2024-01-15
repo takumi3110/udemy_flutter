@@ -133,7 +133,22 @@ class _EditAccountPageState extends State<EditAccountPage> {
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                   },
                   child: const Text('ログアウト')
-              )
+              ),
+              const SizedBox(height: 50),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                ),
+                  onPressed: () {
+                  UserFirestore.deleteUser(myAccount.id);
+                  Authentication.deleteAuth();
+                    while(Navigator.canPop(context)) {
+                      Navigator.pop(context);
+                    }
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                  },
+                  child: const Text('アカウントを削除', style: TextStyle(color: Colors.white),)
+              ),
             ],
           ),
         ),
