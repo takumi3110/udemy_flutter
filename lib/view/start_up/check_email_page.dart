@@ -24,6 +24,7 @@ class _CheckEmailPageState extends State<CheckEmailPage> {
               '登録いただいたメールアドレス当てに確認メールを送信しております。そちらに記載されているURLをクリックし認証をお願いします。'
           ),
           ElevatedButton(onPressed: () async{
+            // 元となるstatefulWidgetからwidget+変数名で取得できる
             var result = await Authentication.emailSignIn(email: widget.email, pass: widget.pass);
             if (result is UserCredential) {
               if (result.user!.emailVerified == true) {
